@@ -1,6 +1,5 @@
 import subprocess
 
-
 with open('output.txt', 'w') as f:
     f.close()
 
@@ -23,4 +22,3 @@ while True:
     except Exception as e:
         print(f"An error occurred: {e}")
         continue
-
