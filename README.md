@@ -1,49 +1,51 @@
 # WebLogger
 
-Developed by IdrisFallout
-
 ## Overview
 
-WebLogger is a simple web application that allows you to view the output of terminal commands in real-time through a web browser.
+WebLogger is a simple web application that allows users to execute commands in their terminal and view the output in real-time through a web interface. It uses Flask, Flask-SocketIO, and subprocess to handle client connections, execute commands, and stream the output back to the client.
 
-## Setup
+## Features
 
-1. Install Python 3 and the required packages:
+- Execute commands in the terminal
+- View the output of the commands in real-time
+- Tail a file for continuous updates
 
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/IdrisFallout/WebLogger.git
+   ```
+
+2. Install the required packages:
    ```
    pip install -r requirements.txt
    ```
 
-2. Run the application:
+## Usage
 
+1. Run the app:
    ```
    python app.py
    ```
 
-## Usage
+2. Open a web browser and navigate to:
+   ```
+   http://localhost:5000
+   ```
 
-1. Open a web browser and navigate to `localhost:5000`.
-2. In the terminal, enter the command you want to execute.
+3. Enter a command in the text box and click the "Execute" button.
 
-The output of the command will be displayed in the web browser in real-time.
+## Configuration
 
-## Tail Functionality
+The following configuration options are available in the `app.py` file:
 
-WebLogger also supports tail functionality, allowing you to continuously monitor the output of a command.
+- `SECRET_KEY`: The secret key used for Flask session management.
 
-1. Connect to the web socket by clicking the "Connect" button in the web browser.
-2. Enter the command you want to tail in the "Tail" input field.
+## Contributing
 
-The web browser will continuously receive and display the output of the command.
+Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
 
-## Command Execution
+## License
 
-Command execution is handled by `main.py`. It uses `subprocess` to execute the command and save the output to a file called `output.txt`. The output file is then monitored by the web application to display the output in real-time.
-
-## Socket.IO
-
-WebLogger uses Socket.IO for real-time communication between the web browser and the server. The following events are supported:
-
-- `connect`: Emitted when a client connects to the web socket.
-- `disconnect`: Emitted when a client disconnects from the web socket.
-- `tail`: Emitted to send the tail output to the client.
+WebLogger is released under the MIT license. See the [LICENSE](LICENSE) file for more information.
