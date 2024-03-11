@@ -1,51 +1,37 @@
 # WebLogger
 
-## Overview
-
-WebLogger is a simple web application that allows users to execute commands in their terminal and view the output in real-time through a web interface. It uses Flask, Flask-SocketIO, and subprocess to handle client connections, execute commands, and stream the output back to the client.
+This repository contains a web application that allows you to execute commands on your computer and view the output in real-time.
 
 ## Features
 
-- Execute commands in the terminal
-- View the output of the commands in real-time
-- Tail a file for continuous updates
-
-## Installation
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/IdrisFallout/WebLogger.git
-   ```
-
-2. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+* Execute commands on your computer remotely
+* View the output of commands in real-time
+* Disconnect and reconnect without losing output
 
 ## Usage
 
-1. Run the app:
-   ```
-   python app.py
-   ```
+1. Clone the repository: `git clone https://github.com/IdrisFallout/WebLogger.git`
+2. Install the required packages: `pip install -r requirements.txt`
+3. Run the application: `python app.py`
+4. Open your browser and go to `http://localhost:5000`
+5. Enter a command in the text box and click "Execute"
+6. The output of the command will be displayed in the chat window
 
-2. Open a web browser and navigate to:
-   ```
-   http://localhost:5000
-   ```
+## Code Overview
 
-3. Enter a command in the text box and click the "Execute" button.
+The repository contains the following files:
 
-## Configuration
+* `app.py`: The main Flask application file
+* `main.py`: The script that executes commands and writes the output to a file
+* `output.txt`: The file that stores the output of commands
+* `requirements.txt`: The file that lists the required packages
 
-The following configuration options are available in the `app.py` file:
+The `app.py` file uses Flask and Flask-SocketIO to create a web application. The `/` route renders the index.html template, which contains a chat window and a text box for entering commands.
 
-- `SECRET_KEY`: The secret key used for Flask session management.
+The `tail` event handler in `app.py` reads the `output.txt` file and emits the new lines to the client.
 
-## Contributing
+The `main.py` script uses the `subprocess` module to execute commands and write the output to the `output.txt` file.
 
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+The `output.txt` file stores the output of commands.
 
-## License
-
-WebLogger is released under the MIT license. See the [LICENSE](LICENSE) file for more information.
+The `requirements.txt` file lists the required packages for the application.
