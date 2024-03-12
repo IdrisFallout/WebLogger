@@ -1,31 +1,47 @@
-## WebLogger
+# WebLogger
 
-This repository provides a simple web-based logger using Flask and Flask-SocketIO. It allows you to tail a live log file and shows a real-time feed of its contents in a web browser.
+This Flask + SocketIO application allows you to track the real-time output of a command line process.
 
-### Usage
+## Features
 
-1. Clone the repository:
-```
-git clone https://github.com/IdrisFallout/WebLogger.git
-```
-2. Install the required dependencies:
+- Web interface to view the output of the process
+- Real-time updates via SocketIO
+- Ability to enter commands and execute them on the command line
+
+## Setup
+
+1. Install the required Python packages:
 ```
 pip install -r requirements.txt
 ```
-3. Run the main script:
+
+2. Run the main Python script:
 ```
 python main.py
 ```
-4. Open your web browser and navigate to `http://localhost:5000` to view the log in real-time.
 
-### Implementation
+3. Open `http://localhost:5000/` in a web browser.
 
-The WebLogger is implemented using the following components:
+## Usage
 
-- **Flask**: A web framework for creating web applications in Python.
-- **Flask-SocketIO**: A Socket.IO extension for Flask that enables real-time communication between the client and server.
-- **Subprocess**: A Python module that allows for the execution of external commands and the capture of their output.
+Enter commands in the input field and click the "Execute" button. The output of the command will be displayed in real time on the web page.
 
-The `main.py` script continuously prompts the user for commands to execute. Each command is appended to a `output.txt` file using the `execute_command()` function.
+## Code Overview
 
-The `app.py` script uses Flask-SocketIO to handle WebSocket connections and emit log data to connected clients. The `tail()` event handler in `app.py` reads the `output.txt` file and sends new lines to the client in real-time.
+### app.py
+
+- Defines the Flask application and SocketIO instance.
+- Includes event handlers for `connect`, `disconnect`, and `tail`.
+
+### main.py
+
+- Executes user-entered commands using `subprocess` and writes the output to a file.
+- Continues running until the user types "exit" or "quit".
+
+### output.txt
+
+- Contains the output of the executed commands.
+
+### requirements.txt
+
+- Specifies the required Python packages for the application.
