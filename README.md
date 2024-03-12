@@ -1,37 +1,51 @@
-# WebLogger
+**WebLogger**
 
-This repository contains a web application that allows you to execute commands on your computer and view the output in real-time.
+This repository contains a Flask-based web application that allows you to execute commands on your local machine and tail the output in real-time.
 
-## Features
+**Requirements**
 
-* Execute commands on your computer remotely
-* View the output of commands in real-time
-* Disconnect and reconnect without losing output
+* Python 3.8 or higher
+* Flask
+* Flask-SocketIO
 
-## Usage
+**Installation**
 
-1. Clone the repository: `git clone https://github.com/IdrisFallout/WebLogger.git`
-2. Install the required packages: `pip install -r requirements.txt`
-3. Run the application: `python app.py`
-4. Open your browser and go to `http://localhost:5000`
-5. Enter a command in the text box and click "Execute"
-6. The output of the command will be displayed in the chat window
+1. Clone this repository:
+```
+git clone https://github.com/IdrisFallout/WebLogger.git
+```
 
-## Code Overview
+2. Install the required Python packages:
+```
+pip install -r requirements.txt
+```
 
-The repository contains the following files:
+**Usage**
 
-* `app.py`: The main Flask application file
-* `main.py`: The script that executes commands and writes the output to a file
-* `output.txt`: The file that stores the output of commands
-* `requirements.txt`: The file that lists the required packages
+1. Start the web application:
+```
+python app.py
+```
 
-The `app.py` file uses Flask and Flask-SocketIO to create a web application. The `/` route renders the index.html template, which contains a chat window and a text box for entering commands.
+2. Open your browser and navigate to the following URL:
+```
+http://localhost:5000
+```
 
-The `tail` event handler in `app.py` reads the `output.txt` file and emits the new lines to the client.
+3. In the text input field, type in the command you want to execute. For example, you can type `ping google.com`.
 
-The `main.py` script uses the `subprocess` module to execute commands and write the output to the `output.txt` file.
+4. Click the "Execute" button.
 
-The `output.txt` file stores the output of commands.
+5. The output of the command will be displayed in real-time in the text area below.
 
-The `requirements.txt` file lists the required packages for the application.
+**WebSockets**
+
+The application uses WebSockets to stream the output of the command to the client in real-time.
+
+**Security**
+
+The application uses the `SECRET_KEY` configuration option to protect the WebSocket connection. You should configure a strong `SECRET_KEY` before deploying the application to a production environment.
+
+**Limitations**
+
+The application only supports executing commands on the local machine. It does not support executing commands over SSH or other remote connections.
