@@ -1,51 +1,31 @@
-**WebLogger**
+## WebLogger
 
-This repository contains a Flask-based web application that allows you to execute commands on your local machine and tail the output in real-time.
+This repository provides a simple web-based logger using Flask and Flask-SocketIO. It allows you to tail a live log file and shows a real-time feed of its contents in a web browser.
 
-**Requirements**
+### Usage
 
-* Python 3.8 or higher
-* Flask
-* Flask-SocketIO
-
-**Installation**
-
-1. Clone this repository:
+1. Clone the repository:
 ```
 git clone https://github.com/IdrisFallout/WebLogger.git
 ```
-
-2. Install the required Python packages:
+2. Install the required dependencies:
 ```
 pip install -r requirements.txt
 ```
-
-**Usage**
-
-1. Start the web application:
+3. Run the main script:
 ```
-python app.py
+python main.py
 ```
+4. Open your web browser and navigate to `http://localhost:5000` to view the log in real-time.
 
-2. Open your browser and navigate to the following URL:
-```
-http://localhost:5000
-```
+### Implementation
 
-3. In the text input field, type in the command you want to execute. For example, you can type `ping google.com`.
+The WebLogger is implemented using the following components:
 
-4. Click the "Execute" button.
+- **Flask**: A web framework for creating web applications in Python.
+- **Flask-SocketIO**: A Socket.IO extension for Flask that enables real-time communication between the client and server.
+- **Subprocess**: A Python module that allows for the execution of external commands and the capture of their output.
 
-5. The output of the command will be displayed in real-time in the text area below.
+The `main.py` script continuously prompts the user for commands to execute. Each command is appended to a `output.txt` file using the `execute_command()` function.
 
-**WebSockets**
-
-The application uses WebSockets to stream the output of the command to the client in real-time.
-
-**Security**
-
-The application uses the `SECRET_KEY` configuration option to protect the WebSocket connection. You should configure a strong `SECRET_KEY` before deploying the application to a production environment.
-
-**Limitations**
-
-The application only supports executing commands on the local machine. It does not support executing commands over SSH or other remote connections.
+The `app.py` script uses Flask-SocketIO to handle WebSocket connections and emit log data to connected clients. The `tail()` event handler in `app.py` reads the `output.txt` file and sends new lines to the client in real-time.
